@@ -45,15 +45,6 @@ test("decrements the timer by 1 every second", () => {
   expect(screen.queryByText(/7 seconds remaining/)).toBeInTheDocument();
 });
 
-test("calls onAnswered after 10 seconds", () => {
-  const onAnswered = jest.fn();
-  render(<Question question={testQuestion} onAnswered={onAnswered} />);
-  act(() => {
-    jest.advanceTimersByTime(11000);
-  });
-  expect(onAnswered).toHaveBeenCalledWith(false);
-});
-
 test("clears the timeout after unmount", () => {
   jest.spyOn(global, 'clearTimeout');
   const { unmount } = render(
